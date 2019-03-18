@@ -1,0 +1,99 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "Address Book API 2.0 Swagger",
+    "description" : "An addres for book",
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/address" : {
+      "get" : {
+        "summary" : "List addresses",
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/Address"
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create addresses",
+        "parameters" : [ {
+          "name" : "body",
+          "in" : "body",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/Address"
+          }
+        } ],
+        "responses" : {
+          "201" : { }
+        }
+      }
+    },
+    "/address/{addressid}" : {
+      "get" : {
+        "summary" : "Get an address",
+        "responses" : {
+          "200" : {
+            "schema" : {
+              "$ref" : "#/definitions/Address"
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update an address",
+        "responses" : {
+          "204" : { }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete an address",
+        "responses" : {
+          "204" : { }
+        }
+      },
+      "parameters" : [ {
+        "name" : "addressid",
+        "in" : "path",
+        "description" : "The address id",
+        "required" : true,
+        "type" : "string"
+      } ]
+    }
+  },
+  "definitions" : {
+    "Address" : {
+      "title" : "Root Type for Address",
+      "description" : "The root of the Address type's schema.",
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "zip" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string"
+        }
+      },
+      "example" : "{\n    \"id\": \"12345\",\n    \"city\": \"Madrid\",\n    \"state\": \"MAD\"\n}"
+    }
+  }
+}
