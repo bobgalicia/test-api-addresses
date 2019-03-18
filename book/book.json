@@ -1,0 +1,115 @@
+{
+  "openapi" : "3.0.2",
+  "info" : {
+    "title" : "Address Book API",
+    "description" : "An address book.",
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "https://www.apache.org/licenses/LICENSE-2.0"
+    },
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/addresses" : {
+      "get" : {
+        "summary" : "List Adresses",
+        "requestBody" : { },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "Array" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/components/schemas/Address"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Create addresses",
+        "requestBody" : {
+          "content" : {
+            "Address" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/Address"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : { }
+        }
+      }
+    },
+    "/addresses/{addressid}" : {
+      "description" : "",
+      "get" : {
+        "summary" : "Get an address",
+        "responses" : {
+          "200" : {
+            "content" : {
+              "Address" : { }
+            }
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Update an address",
+        "requestBody" : {
+          "content" : {
+            "Address" : { }
+          }
+        },
+        "responses" : {
+          "204" : { }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete an address",
+        "responses" : {
+          "204" : { }
+        }
+      },
+      "parameters" : [ {
+        "name" : "addressid",
+        "in" : "path",
+        "description" : "The address id",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "Address" : {
+        "title" : "Root Type for Address",
+        "description" : "The root of the Address type's schema.",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string"
+          },
+          "city" : {
+            "type" : "string"
+          },
+          "state" : {
+            "type" : "string"
+          },
+          "zip" : {
+            "type" : "string"
+          },
+          "address" : {
+            "type" : "string"
+          }
+        },
+        "example" : "{\n    \"id\": \"12345\",\n    \"city\": \"Madrid\",\n    \"state\": \"MAD\"\n}"
+      }
+    }
+  }
+}
